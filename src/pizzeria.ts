@@ -1,5 +1,5 @@
 import { Orderable } from "./orderable";
-import { Pizza } from "./pizza.model";
+import { Pizza, Status } from "./pizza.model";
 
 export abstract class Pizzeria implements Orderable {
     static id = 0;
@@ -27,7 +27,11 @@ export abstract class Pizzeria implements Orderable {
         this.pizzasInOrder.push(pizza);
     }
 
-    private isOvenFull() {
+    changeStatus(index: number, status: Status) {
+        this.pizzasInOrder[index].status = status;
+    }
+
+    isOvenFull() {
         return this.pizzasInOrder.length > this.maxPizzasInOven;
     }
 
